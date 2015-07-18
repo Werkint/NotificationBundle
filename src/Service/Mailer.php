@@ -5,11 +5,12 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Werkint\Bundle\NotificationBundle\Service\Model\LocaleAwareUserInterface;
 
 /**
- * Mailer.
+ * @see    MailerInterface
  *
  * @author Bogdan Yurov <bogdan@yurov.me>
  */
-class Mailer
+class Mailer implements
+    MailerInterface
 {
     protected $templating;
     protected $translator;
@@ -27,10 +28,7 @@ class Mailer
     }
 
     /**
-     * @param string                   $template
-     * @param array                    $parameters
-     * @param LocaleAwareUserInterface $target
-     * @param array                    $ignoredHandlers
+     * @inheritdoc
      */
     public function sendMessage(
         $template,
@@ -61,7 +59,7 @@ class Mailer
 
             // Отсылаем
             // TODO: maybe do some log?
-            $handler->sendMessage(
+            $result = $handler->sendMessage(
                 $data,
                 $target,
                 $template,

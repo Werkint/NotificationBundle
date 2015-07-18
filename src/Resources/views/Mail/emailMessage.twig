@@ -1,0 +1,15 @@
+{% extends 'WerkintNotificationBundle::mailLayout.twig' %}
+
+{% block emailSubject %}
+  Уведомление
+{% endblock %}
+
+{% block email %}
+  <div>
+    {% if url %}
+      <p>Перейдите по ссылке {{ url }}</p>
+    {% endif %}
+    <p>Код подтверждения</p>
+    <p>{{ code }}</p>
+  </div>
+{% endblock %}

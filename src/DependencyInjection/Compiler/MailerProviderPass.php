@@ -4,6 +4,7 @@ namespace Werkint\Bundle\NotificationBundle\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
+use Werkint\Bundle\NotificationBundle\Service\Bridge\Swiftmailer\StreamBuffer;
 
 /**
  * MailerProviderPass.
@@ -13,8 +14,8 @@ use Symfony\Component\DependencyInjection\Reference;
 class MailerProviderPass implements
     CompilerPassInterface
 {
-    const CLASS_SRV = 'werkint.util.mailer';
-    const CLASS_TAG = 'werkint.util.mailer.provider';
+    const CLASS_SRV = 'werkint_notification.mailer';
+    const CLASS_TAG = 'werkint_notification.provider';
 
     /**
      * {@inheritdoc}
@@ -22,6 +23,10 @@ class MailerProviderPass implements
     public function process(
         ContainerBuilder $container
     ) {
+        $container->getDefinition('swiftmailer.transport.buffer.abstract')->setClass(
+            StreamBuffer::class
+        );
+
         if (!$container->hasDefinition(static::CLASS_SRV)) {
             return;
         }

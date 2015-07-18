@@ -29,7 +29,7 @@ class WerkintNotificationExtension extends Extension
             $this->getAlias(),
             $config
         );
-        
+
         $loader = new YamlFileLoader(
             $container,
             new FileLocator($configDir)

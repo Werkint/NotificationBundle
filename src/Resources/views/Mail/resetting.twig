@@ -1,0 +1,10 @@
+{% extends 'WerkintNotificationBundle::mailLayout.twig' %}
+
+{% block emailSubject %}
+  Сброс пароля для "{{ user.email }}"
+{% endblock %}
+
+{% block email %}
+  <p>Для сброса пароля - пожалуйста, пройдите по ссылке^</p>
+  <p>{{ checkUrl }}</p>
+{% endblock %}

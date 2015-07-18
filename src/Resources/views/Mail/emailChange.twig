@@ -1,0 +1,15 @@
+{% extends 'WerkintNotificationBundle::mailLayout.twig' %}
+
+{% block emailSubject %}
+  Подтверждение почтового адреса "{{ user.email }}"
+{% endblock %}
+
+{% block email %}
+  <div>
+    <p>Для подтверждения почтового адреса пройдите по ссылке:</p>
+    <p>{{ checkUrl }}</p>
+
+    <p>или введите следующий код:</p>
+    <p>{{ checkCode }}</p>
+  </div>
+{% endblock %}

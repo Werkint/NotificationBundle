@@ -1,0 +1,23 @@
+{% block subject %}
+  {{ var.title }}: {% block emailSubject %}{% endblock %}
+{% endblock %}
+
+{% block body_email %}
+  <div>
+    <p>Здравствуйте, {{ user.name }}!</p>
+
+    {% block email %}{% endblock %}
+
+    <p>С уважением,<br/>
+      Команда {{ var.title }}
+    </p>
+  </div>
+{% endblock %}
+
+{% block body_email_text %}
+  {% block emailText %}{{ block('body_email')|striptags }}{% endblock %}
+{% endblock %}
+
+{% block body_sms %}
+  {% block sms %}{{ block('emailSubject') }}{% endblock %}
+{% endblock %}

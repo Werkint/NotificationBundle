@@ -1,3 +1,0 @@
-werkint_notification:
-  resource: "@WerkintNotificationBundle/Controller"
-  type: annotation
