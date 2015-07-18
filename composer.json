@@ -10,8 +10,10 @@
         }
     ],
     "require":     {
-        "doctrine/common":          "*",
-        "symfony/framework-bundle": "*",
+        "doctrine/common":            "*",
+        "symfony/framework-bundle":   "*",
+        "symfony/swiftmailer-bundle": "*",
+        "werkint/alphasms":           "0.1.*-dev",
 
         "php": ">=5.6"
     },

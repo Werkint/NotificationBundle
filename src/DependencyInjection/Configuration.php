@@ -33,6 +33,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->root($this->alias)
             ->children()
+                ->scalarNode('enabled')->defaultValue(false)->end()
+                ->scalarNode('alphasms_key')->defaultValue(null)->end()
+                ->arrayNode('providers')
+                    ->defaultValue(['email'])
+                    ->prototype('scalar')->end()
+                ->end()
             ->end()
         ;
         // @formatter:on

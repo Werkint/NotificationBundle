@@ -29,10 +29,20 @@ class WerkintNotificationExtension extends Extension
             $this->getAlias(),
             $config
         );
+        
         $loader = new YamlFileLoader(
             $container,
             new FileLocator($configDir)
         );
         $loader->load('services.yml');
+
+        $container->setParameter(
+            $this->getAlias() . '.mailerloaded',
+            $config['enabled']
+        );
+        if (!$config['alphasms_key']) {
+            $container->removeDefinition('werkint_notification.handler.sms');
+            $container->removeDefinition('werkint_notification.bridge.alphasms');
+        }
     }
 }

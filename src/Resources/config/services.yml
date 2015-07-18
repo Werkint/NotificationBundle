@@ -1,7 +1,36 @@
 parameters:
-#  werkint_notification.example.class:
-#    Werkint\Bundle\NotificationBundle\Example
+  werkint_notification.mailer.class:
+    Werkint\Bundle\NotificationBundle\Service\Mailer
+  werkint_notification.handler.email.class:
+    Werkint\Bundle\NotificationBundle\Service\Handler\EmailHandler
+  werkint_notification.handler.sms.class:
+    Werkint\Bundle\NotificationBundle\Service\Handler\SmsHandler
 
 services:
-#  werkint_notification.example:
-#    class: %werkint_notification.example.class%
+  # Sending mail with twig
+  werkint_notification.mailer:
+    class: %werkint_notification.mailer.class%
+    arguments:
+      - @twig
+      - @translator
+  werkint_notification.handler.email:
+    class: %werkint_notification.handler.email.class%
+    arguments:
+      - @mailer
+      - %app.email.noreply%
+    tags:
+      - { name: werkint_notification.provider, class: email }
+  werkint_notification.handler.sms:
+    class: %werkint_notification.handler.sms.class%
+    arguments:
+      - @werkint_notification.bridge.alphasms
+    tags:
+      - { name: werkint_notification.provider, class: sms }
+
+  # Мост для AlphaSMS
+  werkint_notification.bridge.alphasms:
+    class: Werkint\Bundle\NotificationBundle\Service\Bridge\Alphasms\Alphasms
+    arguments:
+      - @=parameter('werkint_framework_extra')['mailer']['alphasms_key']
+      - %app.title%
+
