@@ -1,0 +1,30 @@
+{
+    "name":        "werkint/notification-bundle",
+    "type":        "symfony-bundle",
+    "description": "Bundle notifications",
+    "license":     "GPL-3.0+",
+    "authors":     [
+        {
+            "name":  "Bogdan Yurov",
+            "email": "bogdan@yurov.me"
+        }
+    ],
+    "require":     {
+        "doctrine/common":          "*",
+        "symfony/framework-bundle": "*",
+
+        "php": ">=5.6"
+    },
+    "autoload":    {
+        "psr-4": {
+            "Werkint\\Bundle\\NotificationBundle\\":        "src/"
+        }
+    },
+    "extra":       {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+
+    "minimum-stability": "dev"
+}

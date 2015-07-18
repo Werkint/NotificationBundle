@@ -1,0 +1,7 @@
+parameters:
+#  werkint_notification.example.class:
+#    Werkint\Bundle\NotificationBundle\Example
+
+services:
+#  werkint_notification.example:
+#    class: %werkint_notification.example.class%
