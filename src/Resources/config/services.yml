@@ -31,6 +31,6 @@ services:
   werkint_notification.bridge.alphasms:
     class: Werkint\Bundle\NotificationBundle\Service\Bridge\Alphasms\Alphasms
     arguments:
-      - @=parameter('werkint_framework_extra')['mailer']['alphasms_key']
-      - %app.title%
+      - @=parameter('werkint_notification')['alphasms_key']
+      - %app.name%
 
