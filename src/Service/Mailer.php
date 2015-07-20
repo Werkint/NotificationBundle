@@ -67,6 +67,8 @@ class Mailer implements
             );
         }
         $this->translator->setLocale($loc);
+
+        return true;
     }
 
     /**

@@ -15,6 +15,7 @@ interface MailerInterface
      * @param array                    $parameters
      * @param LocaleAwareUserInterface $target
      * @param array                    $ignoredHandlers
+     * @return boolean
      */
     public function sendMessage(
         $template,
