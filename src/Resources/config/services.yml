@@ -11,19 +11,19 @@ services:
   werkint_notification.mailer:
     class: %werkint_notification.mailer.class%
     arguments:
-      - @twig
-      - @translator
+      - '@twig'
+      - '@translator'
   werkint_notification.handler.email:
     class: %werkint_notification.handler.email.class%
     arguments:
-      - @mailer
+      - '@mailer'
       - %app.email.noreply%
     tags:
       - { name: werkint_notification.provider, class: email }
   werkint_notification.handler.sms:
     class: %werkint_notification.handler.sms.class%
     arguments:
-      - @werkint_notification.bridge.alphasms
+      - '@werkint_notification.bridge.alphasms'
     tags:
       - { name: werkint_notification.provider, class: sms }
 
@@ -31,6 +31,6 @@ services:
   werkint_notification.bridge.alphasms:
     class: Werkint\Bundle\NotificationBundle\Service\Bridge\Alphasms\Alphasms
     arguments:
-      - @=parameter('werkint_notification')['alphasms_key']
+      - "@=parameter('werkint_notification')['alphasms_key']"
       - %app.name%
 
